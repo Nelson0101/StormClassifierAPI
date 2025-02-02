@@ -15,9 +15,9 @@ namespace Backend.Controllers
         [HttpGet("{location}/{date}/{mainProcess}")]
         public async Task<IActionResult> GetDamage([FromRoute] string location, [FromRoute] DateTime date, [FromRoute] string mainProcess)
         {
-            //var weatherData = await weatherApiCallerByLocation.GetWeatherData(location, date);
+            var weatherData = await weatherApiCallerByLocation.GetWeatherData(location, date);
 
-            return Ok(1);
+            return Ok(weatherData);
         }
         
     }
