@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 namespace Backend.Domain;
 
-public record WeatherDataDto(
+public record WeatherData(
     double Latitude,
     double Longitude,
     double GenerationtimeMs,

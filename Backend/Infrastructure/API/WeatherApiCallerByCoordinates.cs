@@ -9,7 +9,7 @@ public class WeatherApiCallerByCoordinates(IOptions<Settings> settings, HttpClie
 {
     private readonly string _baseUrl = settings.Value.WeatherApiUrl;
 
-    public async Task<WeatherDataDto?> GetWeatherData(Coordinates coordinates, DateTime endDate)
+    public async Task<WeatherData?> GetWeatherData(Coordinates coordinates, DateTime endDate)
     {
         var startDate = endDate.AddDays(-6);
         var url =
@@ -19,7 +19,7 @@ public class WeatherApiCallerByCoordinates(IOptions<Settings> settings, HttpClie
         if (response.IsSuccessStatusCode)
         {
             var json = await response.Content.ReadAsStringAsync();
-            var weatherData = JsonSerializer.Deserialize<WeatherDataDto>(json,new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
+            var weatherData = JsonSerializer.Deserialize<WeatherData>(json,new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
             return weatherData;
         }
         throw new HttpRequestException($"Error: {response.StatusCode}");

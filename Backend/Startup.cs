@@ -2,6 +2,7 @@ using Backend.Application;
 using Backend.Infrastructure.API;
 using Backend.Infrastructure.Classifier;
 using Backend.Infrastructure.Utils;
+using Backend.Presentation.Dtos;
 
 namespace Backend
 {
@@ -18,6 +19,8 @@ namespace Backend
             serviceCollection.AddScoped<ZScoreNormalizer>();
             serviceCollection.AddScoped<TensorFactory>();
             serviceCollection.AddScoped<Classifier>();
+            serviceCollection.AddScoped<DateChecker>();
+            serviceCollection.AddScoped<DtoFactory>();
             serviceCollection.AddControllers();
         }
 

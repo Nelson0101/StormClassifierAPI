@@ -7,7 +7,7 @@ public class WeatherApiCallerByLocation(
     WeatherApiCallerByCoordinates apiCaller,
     LocationToCoordinatesConverter locationToCoordinatesConverter)
 {
-    public async Task<WeatherDataDto> GetWeatherData(string location, DateTime endDate)
+    public async Task<WeatherData> GetWeatherData(string location, DateTime endDate)
     {
         Coordinates coordinates;
         try

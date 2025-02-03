@@ -8,7 +8,7 @@ public class TensorFactory
     public DenseTensor<float> CreateTensorFromClassifierData(ClassifierData classifierData)
     {
         var features = new float[37];
-        features[0] = (float) classifierData.DateTime.Month;
+        features[0] = classifierData.DateTime.Month;
         features[1] = (float) classifierData.MainProcess;
         Array.Copy(classifierData.WeatherDataDaily.Temperature2mMax.Select(x=> (float)x).ToArray(), 0, features, 2, 7);
         Array.Copy(classifierData.WeatherDataDaily.Temperature2mMin.Select(x=> (float)x).ToArray(), 0, features, 9, 7);

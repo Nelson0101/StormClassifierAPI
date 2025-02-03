@@ -6,23 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Presentation
 {
-    //dependency injection done by Framework
+    //dependency injection 
     [ApiController]
     [Route("api/[controller]/")]
-    public class DamageController(WeatherApiCallerByLocation weatherApiCallerByLocation, Classifier classifier) : ControllerBase
+    public class DamageController(WeatherApiCallerByLocation weatherApiCallerByLocation, Classifier classifier, DateChecker dateChecker, DtoFactory dtoFactory) : ControllerBase
     {
         [HttpGet("{location}/{date}/{mainProcess}")]
         public async Task<IActionResult> GetDamage([FromRoute] string location, [FromRoute] DateTime date, [FromRoute] string mainProcess)
         {
             MainProcess mainProcessEnum;
-            WeatherDataDto? weatherData;
+            WeatherData? weatherData;
+            if (!dateChecker.DateIsFromPreviousDay(date))
+            {
+                return BadRequest(dtoFactory.InvalidDateDto());
+            }
             try
             {
                 mainProcessEnum = GetMainProcess(mainProcess);
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
-                return BadRequest(new ErrorDto(e.Message));
+                return BadRequest(dtoFactory.InvalidMainProcessDto());
             }
 
             try
@@ -31,12 +35,12 @@ namespace Backend.Presentation
             }
             catch (Exception e)
             {
-                return BadRequest(new ErrorDto(e.Message));
+                return BadRequest(dtoFactory.InvalidLocationDto());
             }
             
             var classifierData = new ClassifierData(false, weatherData.Daily, mainProcessEnum, date);
             var classification = classifier.Classify(classifierData);
-            return Ok(new ClassificationDto(classification));
+            return Ok(dtoFactory.ClassificationDto(classification));
         }
 
         private MainProcess GetMainProcess(string mainProcess)
