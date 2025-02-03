@@ -7,12 +7,17 @@ public class WeatherApiCallerByLocation(
     WeatherApiCallerByCoordinates apiCaller,
     LocationToCoordinatesConverter locationToCoordinatesConverter)
 {
-    public async Task<WeatherData> GetWeatherData(string location, DateTime endDate)
+    public async Task<WeatherDataDto> GetWeatherData(string location, DateTime endDate)
     {
-        var coordinates = await locationToCoordinatesConverter.GetCoordinatesForLocation(location);
-        if (coordinates == null)
+        Coordinates coordinates;
+        try
         {
-            throw new NullReferenceException("Null Coordinates");
+            coordinates = await locationToCoordinatesConverter.GetCoordinatesForLocation(location);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Received Coordinates of API are null. Maybe a invalid City was provided." +
+                                "NOTE: Only municipalities in Switzerland are supported");
         }
         var weatherData = await apiCaller.GetWeatherData(coordinates, endDate);
         if (weatherData == null)

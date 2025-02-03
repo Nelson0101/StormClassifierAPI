@@ -1,5 +1,6 @@
 using Backend.Application;
 using Backend.Infrastructure.API;
+using Backend.Infrastructure.Classifier;
 using Backend.Infrastructure.Utils;
 
 namespace Backend
@@ -14,6 +15,7 @@ namespace Backend
             serviceCollection.AddHttpClient<WeatherApiCallerByCoordinates>();
             serviceCollection.AddHttpClient<LocationToCoordinatesConverter>();
             serviceCollection.AddScoped<WeatherApiCallerByLocation>();
+            serviceCollection.AddScoped<Classifier>();
             serviceCollection.AddControllers();
         }
 

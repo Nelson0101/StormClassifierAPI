@@ -1,6 +1,3 @@
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Backend.Domain;
 using Backend.Infrastructure.Utils;
 using Microsoft.Extensions.Options;
@@ -23,16 +20,13 @@ namespace Backend.Infrastructure.API
 
         public async Task<Coordinates> GetCoordinatesForLocation(string location)
         {
-            //https://api.api-ninjas.com/v1/geocoding?city=Affoltern am Albis&country=Switzerland
-            // 
             var url = $"{_baseUrl}city={location}&country=Switzerland";
-            Console.WriteLine(url);
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("X-Api-Key", _apiKey);
 
             var response = await _httpClient.SendAsync(request);
 
-            var locations = await response.Content.ReadFromJsonAsync<List<LocationResponse>>();
+            var locations = await response.Content.ReadFromJsonAsync<List<LocationResponseDto>>();
             var firstLocation = locations?.FirstOrDefault();
 
             if (firstLocation == null)
@@ -43,7 +37,7 @@ namespace Backend.Infrastructure.API
             return new Coordinates(firstLocation.Latitude, firstLocation.Longitude);
         }
 
-        private class LocationResponse
+        private record LocationResponseDto
         {
             public string Name { get; set; }
             public double Latitude { get; set; }
