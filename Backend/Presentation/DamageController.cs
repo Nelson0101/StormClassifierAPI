@@ -6,10 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Presentation
 {
-}
-
-namespace Backend.Controllers
-{
     //dependency injection done by Framework
     [ApiController]
     [Route("api/[controller]/")]

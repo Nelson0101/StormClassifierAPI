@@ -15,6 +15,8 @@ namespace Backend
             serviceCollection.AddHttpClient<WeatherApiCallerByCoordinates>();
             serviceCollection.AddHttpClient<LocationToCoordinatesConverter>();
             serviceCollection.AddScoped<WeatherApiCallerByLocation>();
+            serviceCollection.AddScoped<ZScoreNormalizer>();
+            serviceCollection.AddScoped<TensorFactory>();
             serviceCollection.AddScoped<Classifier>();
             serviceCollection.AddControllers();
         }

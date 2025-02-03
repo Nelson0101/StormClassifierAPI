@@ -22,7 +22,6 @@ public class WeatherApiCallerByCoordinates(IOptions<Settings> settings, HttpClie
             var weatherData = JsonSerializer.Deserialize<WeatherDataDto>(json,new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
             return weatherData;
         }
-
         throw new HttpRequestException($"Error: {response.StatusCode}");
     }
 }

@@ -6,19 +6,17 @@ using Microsoft.ML.OnnxRuntime;
 
 namespace Backend.Infrastructure.Classifier;
 
-public class Classifier(IOptions<Settings> settings)
+public class Classifier(IOptions<Settings> settings, ZScoreNormalizer zScoreNormalizer, TensorFactory tensorFactory)
 {
-    private readonly ZScoreNormalizer _zScoreNormalizer = new();
-    private readonly TensorFactory _tensorFactory = new();
 
     public int Classify(ClassifierData classifierData)
     {
         if (!classifierData.IsNormalized)
         {
-            classifierData = _zScoreNormalizer.Normalize(classifierData);
+            classifierData = zScoreNormalizer.Normalize(classifierData);
         }
 
-        var inputTensor = _tensorFactory.CreateTensorFromClassifierData(classifierData);
+        var inputTensor = tensorFactory.CreateTensorFromClassifierData(classifierData);
         using var session = new InferenceSession(settings.Value.ModelUri);
         var inputs = new List<NamedOnnxValue>
         {

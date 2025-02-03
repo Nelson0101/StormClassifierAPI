@@ -4,19 +4,11 @@ using Microsoft.Extensions.Options;
 
 namespace Backend.Infrastructure.API
 {
-    public class LocationToCoordinatesConverter
+    public class LocationToCoordinatesConverter(IOptions<Settings> settings, HttpClient httpClient)
     {
-        private readonly HttpClient _httpClient;
-        private readonly string _baseUrl;
-        private readonly string _apiKey;
+        private readonly string _baseUrl = settings.Value.CoordinatsApiUrl;
+        private readonly string _apiKey = settings.Value.CoordinatesApiKey;
 
-        public LocationToCoordinatesConverter(IOptions<Settings> settings, HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-            _baseUrl = settings.Value.CoordinatsApiUrl;
-            _apiKey = settings.Value.CoordinatesApiKey;
-        }
-        
 
         public async Task<Coordinates> GetCoordinatesForLocation(string location)
         {
@@ -24,7 +16,7 @@ namespace Backend.Infrastructure.API
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("X-Api-Key", _apiKey);
 
-            var response = await _httpClient.SendAsync(request);
+            var response = await httpClient.SendAsync(request);
 
             var locations = await response.Content.ReadFromJsonAsync<List<LocationResponseDto>>();
             var firstLocation = locations?.FirstOrDefault();
