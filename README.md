@@ -30,3 +30,9 @@ For the above mentioned query, the response is:
 ## Architecture
 This prject uses the Clean Architecture approach by Uncle Bob. The package names correspond to the layer in the clean architecture.
 ![CleanArchitecture.jpg (772×567)](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)
+
+As ASP.Net uses dependency injection by default, this pattern is further used through the whole project. The following diagram displays the injections of the most important classes.
+![image](https://github.com/user-attachments/assets/fcf7f647-f4d2-4e71-9e70-e34fd0aeb7f5)
+
+
+
