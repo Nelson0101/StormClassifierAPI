@@ -33,6 +33,7 @@ This prject uses the Clean Architecture approach by Uncle Bob. The package names
 - Use Cases -> Application
 - Interface Adapter -> Infrastructure
 - Web -> Presentation
+  
 ![CleanArchitecture.jpg (772×567)](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)
 
 As ASP.Net uses dependency injection by default, this pattern is further used through the whole project. The following diagram displays the injections of the most important classes.
