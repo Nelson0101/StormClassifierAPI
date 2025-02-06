@@ -1,4 +1,4 @@
-# StormClassifierAPI
+# StormDamageClassifierAPI
 The goal of this project is to develop a backend application using ASP.NET Core that integrates with a classification algorithm previously developed in the Neural Network course (NAIL002). This algorithm is designed to classify the extent of storm damage in Switzerland based on weather data and the main process which cause the damage (landslide, mudslide or collapse) . The project focuses on building a robust and efficient API to get access to storm damage classifications, where the accuracy of the classifier should not be part of this project.
 For more information about the classification algorithm, please see [Presentation](https://github.com/Nelson0101/StormClassifierAPI/blob/main/EndTermPresentation_NilsGaemperli.pdf).
 
