@@ -4,7 +4,7 @@ using Backend.Presentation.Dtos;
 
 namespace Backend.Application
 {
-    public class DamageService(
+    public class DamageClassificationService(
         WeatherApiCallerByLocation weatherApiCaller,
         Classifier classifier,
         DateChecker dateChecker,

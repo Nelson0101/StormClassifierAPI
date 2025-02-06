@@ -8,15 +8,15 @@ namespace Backend.Presentation
     /// <summary>
     /// Entrance point of the Endpoint. 
     /// </summary>
-    /// <param name="damageService"></param>
+    /// <param name="damageClassificationService"></param>
     [ApiController]
     [Route("api/[controller]/")]
-    public class DamageController(DamageService damageService) : ControllerBase
+    public class DamageController(DamageClassificationService damageClassificationService) : ControllerBase
     {
         [HttpGet("{location}/{date}/{mainProcess}")]
         public async Task<IActionResult> GetDamage([FromRoute] string location, [FromRoute] DateTime date, [FromRoute] string mainProcess)
         {
-            var result = await damageService.ProcessDamageRequest(location, date, mainProcess);
+            var result = await damageClassificationService.ProcessDamageRequest(location, date, mainProcess);
 
             return result switch
             {

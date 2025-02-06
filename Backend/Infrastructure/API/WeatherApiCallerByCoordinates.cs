@@ -25,12 +25,13 @@ public class WeatherApiCallerByCoordinates(IOptions<Settings> settings, HttpClie
             $"{_baseUrl}?latitude={coordinates.Latitude}&longitude={coordinates.Longitude}&start_date={startDate:yyyy-MM-dd}&end_date={endDate:yyyy-MM-dd}{_openMeteoExtension}";
         var response = await httpClient.GetAsync(url);
 
-        if (response.IsSuccessStatusCode)
+        if (!response.IsSuccessStatusCode)
         {
-            var json = await response.Content.ReadAsStringAsync();
-            var weatherData = JsonSerializer.Deserialize<WeatherData>(json,new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
-            return weatherData;
+            return null;
         }
-        throw new HttpRequestException($"Error: {response.StatusCode}");
+
+        var json = await response.Content.ReadAsStringAsync();
+        var weatherData = JsonSerializer.Deserialize<WeatherData>(json,new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
+        return weatherData;
     }
 }
