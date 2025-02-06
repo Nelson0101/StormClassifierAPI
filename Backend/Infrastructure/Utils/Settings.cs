@@ -1,8 +1,12 @@
 namespace Backend.Infrastructure.Utils;
 
+/// <summary>
+/// Settings Class to access the appsettings.json file.
+/// </summary>
 public class Settings
 {
     public required string WeatherApiUrl { get; init; }
+    public required string OpenMeteoExtension { get; init; }
     public required string CoordinatsApiUrl { get; init; }
     public required string CoordinatesApiKey { get; init; }
     public required string ModelUri { get; init; }

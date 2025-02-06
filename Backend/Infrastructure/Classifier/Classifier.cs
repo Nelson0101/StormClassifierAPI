@@ -9,7 +9,12 @@ namespace Backend.Infrastructure.Classifier;
 public class Classifier(IOptions<Settings> settings, ZScoreNormalizer zScoreNormalizer, TensorFactory tensorFactory)
 {
 
-    public int Classify(ClassifierData classifierData)
+    /// <summary>
+    /// Calls the Classifier with the normalized Data. Classifier File (model.onnx) must be specified in appsettings.json
+    /// </summary>
+    /// <param name="classifierData"></param>
+    /// <returns>Classification Enum, Corresponding to the prediction of the model. </returns>
+    public Classification Classify(ClassifierData classifierData)
     {
         if (!classifierData.IsNormalized)
         {
@@ -25,6 +30,6 @@ public class Classifier(IOptions<Settings> settings, ZScoreNormalizer zScoreNorm
         
         using var results = session.Run(inputs);
         var output = (int) results[0].AsEnumerable<float>().ToArray()[0];
-        return output;
+        return (Classification) output;
     }
 }

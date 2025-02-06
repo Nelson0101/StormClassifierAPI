@@ -1,3 +1,4 @@
+using Backend.Domain;
 using Backend.Infrastructure.Utils;
 using Microsoft.Extensions.Options;
 
@@ -15,7 +16,7 @@ public class DtoFactory(IOptions<Settings> settings)
         return new InvalidDateDto(CreateMessage(_invalidDateErrorMessage));
     }
 
-    public ClassificationDto ClassificationDto(int classification)
+    public ClassificationDto ClassificationDto(Classification classification)
     {
         return new ClassificationDto(classification);
     }

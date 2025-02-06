@@ -1,3 +1,7 @@
 namespace Backend.Presentation.Dtos;
 
-public record ErrorDto(string ErrorMessage);
+/// <summary>
+/// Base record for ErrorDto's
+/// </summary>
+/// <param name="ErrorMessage"></param>
+public record ErrorDto(string ErrorMessage):IDto;

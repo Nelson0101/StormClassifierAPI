@@ -21,6 +21,7 @@ namespace Backend
             serviceCollection.AddScoped<Classifier>();
             serviceCollection.AddScoped<DateChecker>();
             serviceCollection.AddScoped<DtoFactory>();
+            serviceCollection.AddScoped<DamageService>();
             serviceCollection.AddControllers();
         }
 

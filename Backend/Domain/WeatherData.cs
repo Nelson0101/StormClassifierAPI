@@ -1,6 +1,18 @@
 using System.Text.Json.Serialization;
 namespace Backend.Domain;
 
+/// <summary>
+/// Record for the response of the Open Meteo Api
+/// </summary>
+/// <param name="Latitude"></param>
+/// <param name="Longitude"></param>
+/// <param name="GenerationtimeMs"></param>
+/// <param name="UtcOffsetSeconds"></param>
+/// <param name="Timezone"></param>
+/// <param name="TimezoneAbbreviation"></param>
+/// <param name="Elevation"></param>
+/// <param name="DailyUnits"></param>
+/// <param name="Daily"></param>
 public record WeatherData(
     double Latitude,
     double Longitude,

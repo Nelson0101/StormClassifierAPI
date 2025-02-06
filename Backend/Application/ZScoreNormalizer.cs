@@ -4,6 +4,11 @@ namespace Backend.Application;
 
 public class ZScoreNormalizer
 {
+    /// <summary>
+    /// Normalizes the WeatherData, as this is required for the Classifier to work with.
+    /// </summary>
+    /// <param name="classifierData"></param>
+    /// <returns>ZScore normalized ClassifierData</returns>
     public ClassifierData Normalize(ClassifierData classifierData)
     {
         Daily dailyNormalized = new Daily(classifierData.WeatherDataDaily.Time,

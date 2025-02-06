@@ -5,6 +5,11 @@ namespace Backend.Application;
 
 public class TensorFactory
 {
+    /// <summary>
+    /// Creates a DenseTensor with a ClassifierData Object. 
+    /// </summary>
+    /// <param name="classifierData"></param>
+    /// <returns>A DenseTensor containing the values given by the ClassifierData object</returns>
     public DenseTensor<float> CreateTensorFromClassifierData(ClassifierData classifierData)
     {
         var features = new float[37];
