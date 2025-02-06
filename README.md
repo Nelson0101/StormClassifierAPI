@@ -26,3 +26,7 @@ For the above mentioned query, the response is:
 ```JSON
   {"classification": 0}
 ```
+
+## Architecture
+This prject uses the Clean Architecture approach by Uncle Bob. The package names correspond to the layer in the clean architecture.
+![CleanArchitecture.jpg (772×567)](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)
