@@ -1,12 +1,13 @@
+using Backend.Application;
 using Backend.Domain;
-using Backend.Infrastructure.Classifier;
 using Backend.Presentation.Dtos;
 
-namespace Backend.Application
+
+namespace Backend.Infrastructure.Services
 {
     public class DamageClassificationService(
         WeatherApiCallerByLocation weatherApiCaller,
-        Classifier classifier,
+        Classifier.Classifier classifier,
         DateChecker dateChecker,
         DtoFactory dtoFactory)
     {

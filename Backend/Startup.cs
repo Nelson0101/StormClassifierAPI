@@ -1,6 +1,7 @@
 using Backend.Application;
 using Backend.Infrastructure.API;
 using Backend.Infrastructure.Classifier;
+using Backend.Infrastructure.Services;
 using Backend.Infrastructure.Utils;
 using Backend.Presentation.Dtos;
 
